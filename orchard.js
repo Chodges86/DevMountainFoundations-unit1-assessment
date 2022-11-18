@@ -51,7 +51,27 @@ const pinkPrice = .55
 
 // CODE HERE
 
+// Setup variables to track total acres from each orchard
+let fujiTotalAcres = 0
+let galaTotalAcres = 0
+let pinkTotalAcres = 0
 
+// Loop through Fuji orchard to calculate total number of 
+for (let i = 0; i < fujiAcres.length; i++) {
+    fujiTotalAcres += fujiAcres[i]
+}
+// Loop through Gala orchard to calculate total number of 
+for (let i = 0; i < galaAcres.length; i++) {
+    galaTotalAcres += galaAcres[i]
+}
+// Loop through Pink orchard to calculate total number of 
+for (let i = 0; i < pinkAcres.length; i++) {
+    pinkTotalAcres += pinkAcres[i]
+}
+
+// Determine total number of acres picked by adding all orchards together
+const totalAcres = fujiTotalAcres + galaTotalAcres + pinkTotalAcres
+console.log(`totalAcres = ${totalAcres}`)
 
 
 
@@ -69,6 +89,12 @@ const pinkPrice = .55
 
 // CODE HERE
 
+// Declare a property to count the number of acrePicked entries in all orchards
+const totalNumOfDays = fujiAcres.length + galaAcres.length + pinkAcres.length
+
+// Calculate average acres picked per day
+const averageDailyAcres = totalAcres / totalNumOfDays
+console.log(`averageDailyAcres = ${averageDailyAcres}`)
 
 
 
@@ -107,7 +133,13 @@ let days = 0
 
 // CODE HERE
 
-
+// Calclulate the estimated number of days left to work 
+while (acresLeft > 0) {
+    days += 1
+    acresLeft -= averageDailyAcres
+}
+// Log days to console
+console.log(`There are ${days} days left to work picking apples`)
 
 // PROBLEM 4
 
@@ -135,9 +167,30 @@ let days = 0
 
 // CODE HERE
 
-// let fujiTons =
-// let galaTons =
-// let pinkTons =
+let fujiTons = []
+let galaTons = []
+let pinkTons = []
+
+// Setup an easy way to change yield in case in the future the yield per acre changes
+const yieldPerAcre = 6.5
+
+// Loop fujiAcres to calculate daily tons picked in this orchard and add them to the appropriate array
+for (let i = 0; i < fujiAcres.length; i++) {
+    fujiTons.push(fujiAcres[i] * yieldPerAcre)
+}
+console.log(`fujiTons = ${fujiTons}`)
+
+// Loop galaAcres to calculate daily tons picked in this orchard and add them to the appropriate array
+for (let i = 0; i < galaAcres.length; i++) {
+    galaTons.push(galaAcres[i] * yieldPerAcre)
+}
+console.log(`galaTons = ${galaTons}`)
+
+// Loop pinkAcres to calculate daily tons picked in this orchard and add them to the appropriate array
+for (let i = 0; i < pinkAcres.length; i++) {
+    pinkTons.push(pinkAcres[i] * yieldPerAcre)
+}
+console.log(`pinkTons = ${pinkTons}`)
 
 
 
@@ -162,9 +215,28 @@ let days = 0
 
 // CODE HERE 
 
-// let fujiPounds =
-// let galaPounds =
-// let pinkPounds =
+// Declare a variable to track the pounds of yield 
+let fujiPounds = 0
+let galaPounds = 0
+let pinkPounds = 0
+
+// Calculate the the total tons in the fujiTons array and multiply by 2000 to get pounds
+for (let i = 0; i < fujiTons.length; i++) {
+    fujiPounds += fujiTons[i] * 2000
+}
+// Calculate the the total tons in the galaTons array and multiply by 2000 to get pounds
+for (let i = 0; i < galaTons.length; i++) {
+    galaPounds += galaTons[i] * 2000
+}
+// Calculate the the total tons in the pinkTons array and multiply by 2000 to get pounds
+for (let i = 0; i < pinkTons.length; i++) {
+    pinkPounds += pinkTons[i] * 2000
+}
+
+
+console.log(`fujiPounds = ${fujiPounds}`) 
+console.log(`galaPounds = ${galaPounds}`) 
+console.log(`pinkPounds = ${pinkPounds}`)
 
 
 
@@ -189,13 +261,14 @@ let days = 0
 
 // CODE HERE
 
-// let fujiProfit =
-// let galaProfit =
-// let pinkProfit =
+// Calculate profit from each orchard by multiplying the total pounds by the price of each variety of apple
+let fujiProfit = fujiPounds * fujiPrice
+let galaProfit = galaPounds * galaPrice
+let pinkProfit = pinkPounds * pinkPrice
 
-
-
-
+console.log(`fujiProfits = $${fujiProfit}`)
+console.log(`galaProfits = $${galaProfit}`)
+console.log(`pinkProfits = $${pinkProfit}`)
 
 
 // PROBLEM 7
@@ -209,3 +282,7 @@ let days = 0
 */
 
 // CODE HERE
+
+// Calculate total profits by adding all profits of each variety
+const totalProfit = fujiProfit + galaProfit + pinkProfit
+console.log(`totalProfit = $${totalProfit}`)
